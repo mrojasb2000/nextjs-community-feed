@@ -18,7 +18,9 @@ function QuestionDetail() {
 
     useEffect(() => {
         async function fetchData(){
-            const data = await fetch('');
+            const data = await fetch(
+                `https://api.stackexchange.com/2.2/questions/${id}?site=stackoverflow`,
+              );
             const result = await data.json();
             if(result) {
                 setQuestion(result.items[0]);
@@ -31,14 +33,12 @@ function QuestionDetail() {
     return (
         <QuestionDetailContainer>
             {loading ? (<span>...Loading</span>):(
-                <Card 
-                    key={question.question_id} 
+                <Card
                     title={question.title} 
                     views={question.view_count} 
                     answers={question.answer_count} 
                 />
             )}
-
         </QuestionDetailContainer>
     );
 }

@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import styled from "styled-components";
 import Card from '../../components/Card';
+import Link from 'next/link';
+
+const CardLink = styled.a`
+    text-decoration: none;
+`;
 
 const QuestionsContainer = styled.div`
     display: flex;
@@ -30,12 +35,19 @@ function Questions() {
             {loading ? (<span>Loading...</span>):(
                 <div>
                     {questions.map((question) => (
-                        <Card 
+                        <Link 
                             key={question.question_id} 
-                            title={question.title} 
-                            views={question.view_count} 
-                            answers={question.answer_count} 
-                        />
+                            href={`/questions/${question.question_id}`} 
+                            passHref>
+                            <CardLink>
+                                <Card
+                                    key={question.question_id}
+                                    title={question.title} 
+                                    views={question.view_count} 
+                                    answers={question.answer_count} 
+                                />
+                            </CardLink>
+                        </Link>
                     ))}
                 </div>
             )}
