@@ -31,7 +31,6 @@ function Questions() {
 
     return (
         <QuestionsContainer>
-            <h2>Questions</h2>
             {loading ? (<span>Loading...</span>):(
                 <div>
                     {questions.map((question) => (
